@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seni Seviyorum</title>
+    <style>
+        body {
+            background-color: #f0e6f7;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            position: relative;
+        }
+        .heart {
+            font-size: 240px; /* Kalp boyutunu iki katına çıkardık */
+            color: #ff66b2;
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: transform 0.3s;
+        }
+        .heart:hover {
+            transform: scale(1.1);
+        }
+        .message {
+            display: none;
+            font-size: 30px;
+            color: #d147a6;
+            margin-top: 20px;
+            transition: opacity 0.5s ease;
+        }
+        .heart-inner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: inline-block;
+            transition: transform 0.5s ease;
+        }
+        .heart-left {
+            transform-origin: right center;
+        }
+        .heart-right {
+            transform-origin: left center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heart" onclick="splitHeart()">
+            <div class="heart-inner heart-left">❤️</div>
+            <div class="heart-inner heart-right">❤️</div>
+        </div>
+        <div class="message" id="message">Seni seviyorum!</div>
+    </div>
+
+    <script>
+        function splitHeart() {
+            const heartLeft = document.querySelector('.heart-left');
+            const heartRight = document.querySelector('.heart-right');
+            const message = document.getElementById("message");
+
+            // Kalbin ikiye ayrılması
+            heartLeft.style.transform = 'rotate(-45deg) translateX(-100px)';
+            heartRight.style.transform = 'rotate(45deg) translateX(100px)';
+
+            // Mesajın gösterilmesi
+            setTimeout(function() {
+                message.style.display = "block";
+                message.style.opacity = 1; // Mesajın yavaşça görünmesi
+            }, 500);  // Kalp ayrıldıktan sonra mesajı göster
+        }
+    </script>
+</body>
+</html>
